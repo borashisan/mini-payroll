@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
+import ReactLoading from "react-loading";
 import './App.css';
 
 const App: FC = () => {
@@ -20,11 +21,25 @@ const App: FC = () => {
   }, []);
 
   return(
-    <>
-      <h1>{hoge?.id.toString()}</h1>
-      <p>{hoge?.test}</p>
+    <div>
+      {
+        hoge ?
+          <div>
+            <h1>
+              {hoge?.id.toString()}
+            </h1>
+            <p>{hoge?.test}</p>
+          </div>
+             :
+          <ReactLoading
+            type="spin"
+            color="#ebc634"
+            height="100px"
+            width="100px"
+          />
+      }
       <button onClick={fetchRandomItem}>取得</button>
-    </>
+    </div>
   )
 }
 
