@@ -12,12 +12,14 @@ const App: FC = () => {
   const fetchRandomItem = (): void => {
     axios.defaults.baseURL = 'http://localhost:4500'
     const url: string = '/tests/fetch'
-    axios.get(url)
-      .then(response => {
+    axios
+      .get(url)
+      .then((response) => {
         setHoge(response.data)
       })
-      .catch(() => { console.log('error') }
-      )
+      .catch(() => {
+        console.log('error')
+      })
   }
   useEffect(() => {
     fetchRandomItem()
@@ -25,21 +27,21 @@ const App: FC = () => {
 
   return (
     <div>
-      {
-        (hoge != null)
-          ? <div>
-            <h1>
-              {hoge?.id.toString()}
-            </h1>
-            <p>{hoge?.test}</p>
-          </div>
-          : <ReactLoading
-            type="spin"
-            color="#ebc634"
-            height="100px"
-            width="100px"
-          />
-      }
+      {hoge != null
+        ? (
+        <div>
+          <h1>{hoge?.id.toString()}</h1>
+          <p>{hoge?.test}</p>
+        </div>
+          )
+        : (
+        <ReactLoading
+          type="spin"
+          color="#ebc634"
+          height="100px"
+          width="100px"
+        />
+          )}
       <button onClick={fetchRandomItem}>取得</button>
     </div>
   )
