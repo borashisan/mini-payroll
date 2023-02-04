@@ -18,6 +18,10 @@
     "eject": "react-scripts eject",
     "format": "prettier --write src"
   },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

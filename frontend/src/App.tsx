@@ -12,11 +12,11 @@ const App: FC = () => {
     <>
       <Header />
       <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/practice1' element={<Practice1 />}></Route>
-        <Route path='/practice2' element={<Practice2 />}></Route>
-        <Route path='/practice3' element={<Practice3 />}></Route>
-        <Route path='/test' element={<Test />}></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/practice1" element={<Practice1 />}></Route>
+        <Route path="/practice2" element={<Practice2 />}></Route>
+        <Route path="/practice3" element={<Practice3 />}></Route>
+        <Route path="/test" element={<Test />}></Route>
       </Routes>
     </>
   )
