@@ -16,6 +16,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend:/backend
+      - bundle:/usr/local/bundle
     tty: true
     stdin_open: true
     command: bash -c "rm -f tmp/pids/server.pid&&bundle exec rails s -p 4500 -b '0.0.0.0'"
@@ -34,3 +35,4 @@ services:
       - "3306:3306"
 volumes:
   mysql:
+  bundle:
