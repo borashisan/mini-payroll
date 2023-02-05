@@ -10,6 +10,29 @@ const onSubmit = async (values: object): Promise<void> => {
   window.alert(JSON.stringify(values))
 }
 
+const initialValues = {
+  baseSalary: { value: '320000' },
+  positionAllowance: { value: '70000' },
+  housingAllowance: { value: '35000', isUniform: false },
+  commutingAllowance: { value: '14000', isUniform: false }
+}
+
+type ErrorMessage = string | undefined
+
+const required = (value: any): ErrorMessage =>
+  value !== undefined ? undefined : '値を入力してください'
+
+const mustBeNumber = (value: any): ErrorMessage =>
+  isNaN(value) ? '数値を入力してください' : undefined
+
+const composeValidators =
+  (...validators: Array<(value: any) => ErrorMessage>) =>
+    (value: any) =>
+      validators.reduce(
+        (error: ErrorMessage, validator) => error ?? validator(value),
+        undefined
+      )
+
 const Practice1: FC = () => {
   return (
     <>
@@ -17,34 +40,50 @@ const Practice1: FC = () => {
       <div>
         <Form
           onSubmit={onSubmit}
+          initialValues={initialValues}
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit}>
               <div>
-                <label>基本給</label>
                 <Field
                   name="baseSalary.value"
-                  component="input"
-                  type="text"
-                  placeholder="基本給"
-                />
+                  validate={composeValidators(required, mustBeNumber)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <label>基本給</label>
+                      <input {...input} type="text" placeholder="基本給" />
+                      {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
               </div>
               <div>
-                <label>役職手当</label>
                 <Field
                   name="positionAllowance.value"
-                  component="input"
-                  type="text"
-                  placeholder="役職手当"
-                />
+                  validate={composeValidators(required, mustBeNumber)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <label>役職手当</label>
+                      <input {...input} type="text" placeholder="役職手当" />
+                      {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
               </div>
               <div>
-                <label>住宅手当</label>
                 <Field
                   name="housingAllowance.value"
-                  component="input"
-                  type="text"
-                  placeholder="住宅手当"
-                />
+                  validate={composeValidators(required, mustBeNumber)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <label>住宅手当</label>
+                      <input {...input} type="text" placeholder="住宅手当" />
+                      {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
                 <label>一律支給かどうか</label>
                 <Field
                   name="housingAllowance.isUniform"
@@ -53,13 +92,18 @@ const Practice1: FC = () => {
                 />
               </div>
               <div>
-                <label>通勤手当</label>
                 <Field
                   name="commutingAllowance.value"
-                  component="input"
-                  type="text"
-                  placeholder="通勤手当"
-                />
+                  validate={composeValidators(required, mustBeNumber)}
+                >
+                  {({ input, meta }) => (
+                    <div>
+                      <label>通勤手当</label>
+                      <input {...input} type="text" placeholder="通勤手当" />
+                      {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
                 <label>支給単位</label>
                 <Field
                   name="commutingAllowance.payUnit"
