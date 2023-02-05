@@ -20,21 +20,61 @@ const Practice1: FC = () => {
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit}>
               <div>
-                <label>First Name</label>
+                <label>基本給</label>
                 <Field
-                  name="firstName"
+                  name="baseSalary.value"
                   component="input"
                   type="text"
-                  placeholder="First Name"
+                  placeholder="基本給"
                 />
               </div>
               <div>
-                <label>Last Name</label>
+                <label>役職手当</label>
                 <Field
-                  name="lastName"
+                  name="positionAllowance.value"
                   component="input"
                   type="text"
-                  placeholder="Last Name"
+                  placeholder="役職手当"
+                />
+              </div>
+              <div>
+                <label>住宅手当</label>
+                <Field
+                  name="housingAllowance.value"
+                  component="input"
+                  type="text"
+                  placeholder="住宅手当"
+                />
+                <label>一律支給かどうか</label>
+                <Field
+                  name="housingAllowance.isUniform"
+                  component="input"
+                  type="checkbox"
+                />
+              </div>
+              <div>
+                <label>通勤手当</label>
+                <Field
+                  name="commutingAllowance.value"
+                  component="input"
+                  type="text"
+                  placeholder="通勤手当"
+                />
+                <label>支給単位</label>
+                <Field
+                  name="commutingAllowance.payUnit"
+                  component="select"
+                  type="select"
+                >
+                  <option value="1month">１ヶ月</option>
+                  <option value="3month">3ヶ月</option>
+                  <option value="6month">6ヶ月</option>
+                </Field>
+                <label>一律支給かどうか</label>
+                <Field
+                  name="commutingAllowance.isUniform"
+                  component="input"
+                  type="checkbox"
                 />
               </div>
               <div className="buttons">
