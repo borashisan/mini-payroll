@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { type FC } from 'react'
 import { Form, Field } from 'react-final-form'
 
@@ -6,8 +7,20 @@ const sleep = async (ms: number): Promise<void> => {
 }
 
 const onSubmit = async (values: object): Promise<void> => {
+  axios.defaults.baseURL = 'http://localhost:4500'
+  const url: string = '/practices/practice1'
   await sleep(300)
-  window.alert(JSON.stringify(values))
+  axios
+    .post(url, {
+      pay_deduction_params: values
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch(() => {
+      console.log('error')
+    })
+  // window.alert(JSON.stringify(values))
 }
 
 const initialValues = {
@@ -41,7 +54,7 @@ const Practice1: FC = () => {
         <Form
           onSubmit={onSubmit}
           initialValues={initialValues}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
+          render={({ handleSubmit, form, submitting, values }) => (
             <form onSubmit={handleSubmit}>
               <div>
                 <Field
@@ -122,13 +135,13 @@ const Practice1: FC = () => {
                 />
               </div>
               <div className="buttons">
-                <button type="submit" disabled={submitting || pristine}>
+                <button type="submit" disabled={submitting}>
                   Submit
                 </button>
                 <button
                   type="button"
                   onClick={form.reset}
-                  disabled={submitting || pristine}
+                  disabled={submitting}
                 >
                   Reset
                 </button>
