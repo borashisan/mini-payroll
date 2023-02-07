@@ -1,33 +1,17 @@
 import axios from 'axios'
-import { type FC } from 'react'
+import { type FC, useState } from 'react'
 import { Form, Field } from 'react-final-form'
+import { decamelizeKeys } from 'humps'
 
 const sleep = async (ms: number): Promise<void> => {
   await new Promise((resolve) => setTimeout(resolve, ms))
-}
-
-const onSubmit = async (values: object): Promise<void> => {
-  axios.defaults.baseURL = 'http://localhost:4500'
-  const url: string = '/practices/practice1'
-  await sleep(300)
-  axios
-    .post(url, {
-      pay_deduction_params: values
-    })
-    .then((response) => {
-      console.log(response)
-    })
-    .catch(() => {
-      console.log('error')
-    })
-  // window.alert(JSON.stringify(values))
 }
 
 const initialValues = {
   baseSalary: { value: '320000' },
   positionAllowance: { value: '70000' },
   housingAllowance: { value: '35000', isUniform: false },
-  commutingAllowance: { value: '14000', isUniform: false }
+  commutingAllowance: { value: '14000', isUniform: false, payUnit: '1month' }
 }
 
 type ErrorMessage = string | undefined
@@ -47,6 +31,23 @@ const composeValidators =
       )
 
 const Practice1: FC = () => {
+  const [sum, setSum] = useState(0)
+
+  const onSubmit = async (values: object): Promise<void> => {
+    axios.defaults.baseURL = 'http://localhost:4500'
+    const url: string = '/practices/practice1'
+    await sleep(300)
+    axios
+      .post(url, decamelizeKeys(values))
+      .then((response) => {
+        setSum(response.data.payload.basis_for_extra_pay)
+      })
+      .catch(() => {
+        console.log('error')
+      })
+    // window.alert(JSON.stringify(values))
+  }
+
   return (
     <>
       <h1>問題1</h1>
@@ -146,6 +147,7 @@ const Practice1: FC = () => {
                   Reset
                 </button>
               </div>
+              <h2>合計: {sum}</h2>
               <pre>{JSON.stringify(values)}</pre>
             </form>
           )}

@@ -1,11 +1,6 @@
 class PracticesController < ApplicationController
   def practice1
-    p params
-  end
-
-  private
-
-  def pay_deduction_params
-    params.require(:pay_deduction_params).permit
+    basis_for_extra_pay = PayDeductionService.new.calculate_basis_for_extra_pay(params)
+    render json: { payload: { basis_for_extra_pay: basis_for_extra_pay } }
   end
 end
