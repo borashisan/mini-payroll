@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { type FC, useState } from 'react'
 import { Form, Field } from 'react-final-form'
-import { decamelizeKeys } from 'humps'
+import applyCaseMiddleware from 'axios-case-converter'
 
 const sleep = async (ms: number): Promise<void> => {
   await new Promise((resolve) => setTimeout(resolve, ms))
@@ -37,10 +37,11 @@ const Practice1: FC = () => {
     axios.defaults.baseURL = 'http://localhost:4500'
     const url: string = '/practices/practice1'
     await sleep(300)
-    axios
-      .post(url, decamelizeKeys(values))
+    const client = applyCaseMiddleware(axios.create())
+    client
+      .post(url, values)
       .then((response) => {
-        setSum(response.data.payload.basis_for_extra_pay)
+        setSum(response.data.payload.basisForExtraPay)
       })
       .catch(() => {
         console.log('error')
