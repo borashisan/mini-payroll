@@ -11,31 +11,33 @@ const initialValues = {
   baseSalary: { value: '320000' },
   positionAllowance: { value: '70000' },
   housingAllowance: { value: '35000', isUniform: false },
-  commutingAllowance: { value: '14000', isUniform: false, payUnit: '1month' }
+  commutingAllowance: { value: '14000', isUniform: false, payUnit: '1month' },
 }
 
 type ErrorMessage = string | undefined
 
-const required = (value: any): ErrorMessage =>
+type inputValue = number
+
+const required = (value: inputValue): ErrorMessage =>
   value !== undefined ? undefined : '値を入力してください'
 
-const mustBeNumber = (value: any): ErrorMessage =>
+const mustBeNumber = (value: inputValue): ErrorMessage =>
   isNaN(value) ? '数値を入力してください' : undefined
 
 const composeValidators =
-  (...validators: Array<(value: any) => ErrorMessage>) =>
-    (value: any) =>
-      validators.reduce(
-        (error: ErrorMessage, validator) => error ?? validator(value),
-        undefined
-      )
+  (...validators: Array<(value: inputValue) => ErrorMessage>) =>
+  (value: inputValue) =>
+    validators.reduce(
+      (error: ErrorMessage, validator) => error ?? validator(value),
+      undefined
+    )
 
 const Practice1: FC = () => {
   const [sum, setSum] = useState(0)
 
   const onSubmit = async (values: object): Promise<void> => {
     axios.defaults.baseURL = 'http://localhost:4500'
-    const url: string = '/practices/practice1'
+    const url = '/practices/practice1'
     await sleep(300)
     const client = applyCaseMiddleware(axios.create())
     client
