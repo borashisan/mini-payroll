@@ -64,7 +64,31 @@ const Practice1: FC = () => {
   //    },
   //  }
 
-  const initialValues = {
+  type AllowanceValuesType = {
+    value: string
+    isRelatedLabor: boolean
+    isUniform?: boolean
+    payUnit?: string
+  }
+
+  type OtherAllowanceValuesType = {
+    name: string
+    value: string
+    isRelatedLabor: boolean
+    isUniform?: boolean
+    payUnit?: string
+  }
+
+  type InitialValues = {
+    baseSalary: AllowanceValuesType
+    positionAllowance?: AllowanceValuesType
+    qualificationAllowance?: AllowanceValuesType
+    housingAllowance?: AllowanceValuesType
+    commutingAllowance?: AllowanceValuesType
+    otherAllowance?: OtherAllowanceValuesType[]
+  }
+
+  const initialValues: InitialValues = {
     baseSalary: { value: '215000', isRelatedLabor: true },
     qualificationAllowance: { value: '5000', isRelatedLabor: true },
     housingAllowance: {
