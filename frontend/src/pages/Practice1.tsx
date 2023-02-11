@@ -21,8 +21,11 @@ type inputValue = number
 const required = (value: inputValue): ErrorMessage =>
   value !== undefined ? undefined : '値を入力してください'
 
-const mustBeNumber = (value: inputValue): ErrorMessage =>
-  isNaN(value) ? '数値を入力してください' : undefined
+const mustBeNumber = (value: inputValue): ErrorMessage => {
+  return isNaN(value) && value !== undefined
+    ? '数値を入力してください'
+    : undefined
+}
 
 const composeValidators =
   (...validators: Array<(value: inputValue) => ErrorMessage>) =>
@@ -48,7 +51,6 @@ const Practice1: FC = () => {
       .catch(() => {
         console.log('error')
       })
-    // window.alert(JSON.stringify(values))
   }
 
   return (
@@ -107,6 +109,17 @@ const Practice1: FC = () => {
                   component="input"
                   type="checkbox"
                 />
+              </div>
+              <div>
+                <Field name="familyAllowance.value" validate={mustBeNumber}>
+                  {({ input, meta }) => (
+                    <div>
+                      <label>家族手当</label>
+                      <input {...input} type="text" placeholder="家族手当" />
+                      {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
               </div>
               <div>
                 <Field
