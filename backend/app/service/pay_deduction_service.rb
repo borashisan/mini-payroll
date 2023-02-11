@@ -3,40 +3,31 @@
 class PayDeductionService
   # 割増賃金の基礎となる賃金の合計を計算する
   def calculate_basis_for_extra_pay(params)
-    # 基本給
-    base_salary = params.fetch(:base_salary, nil)
+    main_pay_deductions = params.reject { |key| key == 'other_allowance' }.values
+    other_pay_deductions = params.fetch(:other_allowance, [])
 
-    raise '基本給が設定されていません' if base_salary.nil?
+    # 基本給が存在しなければ例外を返す
+    raise '基本給が設定されていません' unless params.fetch(:base_salary, nil)
 
-    # 役職手当
-    position_allowance = params.fetch(:position_allowance, nil)
+    basis_for_extra_pay = 0
 
-    # 住宅手当
-    housing_allowance = params.fetch(:housing_allowance, nil)
-
-    # 通勤手当
-    commuting_allowance = params.fetch(:commuting_allowance, nil)
-
-    # 割増賃金の基礎となる賃金の合計
-    # 労働と直接的な関係が薄い支給は割増賃金の基礎となる賃金から除外する
-    basis_for_extra_pay = base_salary[:value].to_i
-
-    basis_for_extra_pay += position_allowance[:value].to_i if position_allowance
-
-    # 住宅手当や通勤手当は一律支給であれば割増賃金の基礎となる賃金含めて、異なれば含めない
-    basis_for_extra_pay += housing_allowance[:value].to_i if is_uniorm?(housing_allowance)
-
-    if is_uniorm?(commuting_allowance)
-      basis_for_extra_pay += commuting_allowance[:value].to_i / pay_unit(commuting_allowance)
-    end
+    basis_for_extra_pay += calculate_basis_for_extra_pay_amount(main_pay_deductions)
+    basis_for_extra_pay += calculate_basis_for_extra_pay_amount(other_pay_deductions)
 
     basis_for_extra_pay
   end
 
   private
 
-  def is_uniorm?(allowance)
-    allowance[:is_uniform]
+  def calculate_basis_for_extra_pay_amount(allowances)
+    allowances.sum do |allowance|
+      allowance_pay_unit = pay_unit(allowance)
+      if is_related_labor?(allowance) || is_uniform?(allowance)
+        allowance.fetch('value', 0).to_i / allowance_pay_unit
+      else
+        0
+      end
+    end
   end
 
   def pay_unit(allowance)
@@ -47,6 +38,16 @@ class PayDeductionService
       3
     when '6month'
       6
+    else
+      1
     end
+  end
+
+  def is_related_labor?(allowance)
+    allowance.fetch(:is_related_labor, nil)
+  end
+
+  def is_uniform?(allowance)
+    allowance.fetch(:is_uniform, nil)
   end
 end

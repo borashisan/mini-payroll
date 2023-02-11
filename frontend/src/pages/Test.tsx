@@ -10,7 +10,7 @@ const App: FC = () => {
   const [hoge, setHoge] = useState<hogeType | null>(null)
   const fetchRandomItem = (): void => {
     axios.defaults.baseURL = 'http://localhost:4500'
-    const url: string = '/tests/fetch'
+    const url = '/tests/fetch'
     axios
       .get(url)
       .then((response) => {
@@ -26,21 +26,19 @@ const App: FC = () => {
 
   return (
     <div className="Test">
-      {hoge != null
-        ? (
+      {hoge != null ? (
         <div>
           <h1>{hoge?.id.toString()}</h1>
           <p>{hoge?.test}</p>
         </div>
-          )
-        : (
+      ) : (
         <ReactLoading
           type="spin"
           color="#ebc634"
           height="100px"
           width="100px"
         />
-          )}
+      )}
       <button onClick={fetchRandomItem}>取得</button>
     </div>
   )
