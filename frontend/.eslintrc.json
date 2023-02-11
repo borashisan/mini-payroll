@@ -5,8 +5,9 @@
         "node": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "standard-with-typescript"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended"
     ],
     "overrides": [
     ],
@@ -21,11 +22,7 @@
     "rules": {
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/no-misused-promises": [
-        "error",
-        {
-          "checksVoidReturn": false
-        }
-      ]
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-explicit-any": "error"
     }
 }

@@ -10,7 +10,7 @@ const App: FC = () => {
   const [hoge, setHoge] = useState<hogeType | null>(null)
   const fetchRandomItem = (): void => {
     axios.defaults.baseURL = 'http://localhost:4500'
-    const url: string = '/tests/fetch'
+    const url = '/tests/fetch'
     axios
       .get(url)
       .then((response) => {
