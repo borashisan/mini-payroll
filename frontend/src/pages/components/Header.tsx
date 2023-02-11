@@ -1,9 +1,10 @@
 import { type FC } from 'react'
 import { Link } from 'react-router-dom'
+import '../../index.css'
 
 const Header: FC = () => {
   return (
-    <>
+    <div>
       <p>
         <Link to={'/'}>ホーム</Link>
       </p>
@@ -19,7 +20,7 @@ const Header: FC = () => {
       <p>
         <Link to={'/test'}>APITest</Link>
       </p>
-    </>
+    </div>
   )
 }
 
