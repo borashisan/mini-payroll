@@ -15,4 +15,37 @@
   .containerHeader {
     @apply p-4 text-2xl font-medium bg-gray-200
   }
+  .containerContents {
+    @apply p-4
+  }
+  .containerTabs {
+    @apply flex justify-start
+  }
+  .containerTab {
+    @apply flex justify-center items-center p-4 w-32 border border-gray-100 rounded-sm
+  }
+  .description {
+    @apply p-4 border border-gray-200 rounded
+  }
+  .inputRows {
+    @apply grid gap-y-2
+  }
+  .inputColumns {
+    @apply flex gap-x-4
+  }
+  .allowanceInputLabel {
+    @apply flex items-center w-20
+  }
+  .inputForm {
+    @apply p-1 border rounded w-56
+  }
+  .inputLabel {
+    @apply flex items-center
+  }
+  .inputCheckBox {
+    @apply w-5 h-5 cursor-pointer
+  }
+  .inputSelectBox {
+    @apply w-20 cursor-pointer
+  }
 }

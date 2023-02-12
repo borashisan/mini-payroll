@@ -7,15 +7,34 @@ const Practice1: FC = () => {
     <div className="main">
       <div className="mainContainer">
         <h1 className="containerHeader">演習1</h1>
-        <div>
-          <button onClick={() => setInitializeValues(case1)}>事例1</button>
-          <button onClick={() => setInitializeValues(case2)}>事例2</button>
-          <button onClick={() => setInitializeValues(freeFormat)}>
+        <div className="containerTabs">
+          <button
+            className="containerTab"
+            onClick={() => setInitializeValues(case1)}
+          >
+            事例1
+          </button>
+          <button
+            className="containerTab"
+            onClick={() => setInitializeValues(case2)}
+          >
+            事例2
+          </button>
+          <button
+            className="containerTab"
+            onClick={() => setInitializeValues(freeFormat)}
+          >
             自由記述
           </button>
         </div>
-        <div>
-          <AllowanceForm initialValues={initialValues} />
+        <div className="containerContents">
+          <p className="description">
+            問.
+            次の事例について、割増賃金の基礎となる賃金の合計を計算してください。
+          </p>
+          <div className="p-4">
+            <AllowanceForm initialValues={initialValues} />
+          </div>
         </div>
       </div>
     </div>

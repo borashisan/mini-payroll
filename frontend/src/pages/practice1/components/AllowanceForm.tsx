@@ -42,94 +42,134 @@ const AllowanceForm: FC<FormProps> = (props) => {
         values,
       }) => (
         <form onSubmit={handleSubmit}>
-          <div>
-            <Field
-              name="baseSalary.value"
-              validate={composeValidators(required, mustBeNumber)}
-            >
-              {({ input, meta }) => (
-                <div>
-                  <label>基本給</label>
-                  <input {...input} type="text" placeholder="基本給" />
-                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+          <div className="inputRows">
+            <div>
+              <Field
+                name="baseSalary.value"
+                validate={composeValidators(required, mustBeNumber)}
+              >
+                {({ input, meta }) => (
+                  <div className="inputColumns">
+                    <label className="allowanceInputLabel">基本給</label>
+                    <input
+                      className="inputForm"
+                      {...input}
+                      type="text"
+                      placeholder="基本給"
+                    />
+                    {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="positionAllowance.value"
+                validate={composeValidators(mustBeNumber)}
+              >
+                {({ input, meta }) => (
+                  <div className="inputColumns">
+                    <label className="allowanceInputLabel">役職手当</label>
+                    <input
+                      className="inputForm"
+                      {...input}
+                      type="text"
+                      placeholder="役職手当"
+                    />
+                    {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="qualificationAllowance.value"
+                validate={mustBeNumber}
+              >
+                {({ input, meta }) => (
+                  <div className="inputColumns">
+                    <label className="allowanceInputLabel">資格手当</label>
+                    <input
+                      className="inputForm"
+                      {...input}
+                      type="text"
+                      placeholder="資格手当"
+                    />
+                    {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div className="inputColumns">
+              <label className="allowanceInputLabel">住宅手当</label>
+              <Field
+                name="housingAllowance.value"
+                validate={composeValidators(mustBeNumber)}
+              >
+                {({ input, meta }) => (
+                  <>
+                    <input
+                      className="inputForm"
+                      {...input}
+                      type="text"
+                      placeholder="住宅手当"
+                    />
+                    {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                  </>
+                )}
+              </Field>
+              <label className="inputLabel">一律支給かどうか</label>
+              <div className="inputLabel">
+                <Field
+                  className="inputCheckBox"
+                  name="housingAllowance.isUniform"
+                  component="input"
+                  type="checkbox"
+                />
+              </div>
+            </div>
+            <div>
+              <div className="inputColumns">
+                <label className="allowanceInputLabel">通勤手当</label>
+                <Field
+                  name="commutingAllowance.value"
+                  validate={composeValidators(required, mustBeNumber)}
+                >
+                  {({ input, meta }) => (
+                    <>
+                      <input
+                        className="inputForm"
+                        {...input}
+                        type="text"
+                        placeholder="通勤手当"
+                      />
+                      {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                    </>
+                  )}
+                </Field>
+                <label className="inputLabel">一律支給かどうか</label>
+                <div className="inputLabel">
+                  <Field
+                    className="inputCheckBox"
+                    name="commutingAllowance.isUniform"
+                    component="input"
+                    type="checkbox"
+                  />
                 </div>
-              )}
-            </Field>
-          </div>
-          <div>
-            <Field
-              name="positionAllowance.value"
-              validate={composeValidators(mustBeNumber)}
-            >
-              {({ input, meta }) => (
-                <div>
-                  <label>役職手当</label>
-                  <input {...input} type="text" placeholder="役職手当" />
-                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-          </div>
-          <div>
-            <Field name="qualificationAllowance.value" validate={mustBeNumber}>
-              {({ input, meta }) => (
-                <div>
-                  <label>資格手当</label>
-                  <input {...input} type="text" placeholder="資格手当" />
-                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-          </div>
-          <div>
-            <Field
-              name="housingAllowance.value"
-              validate={composeValidators(mustBeNumber)}
-            >
-              {({ input, meta }) => (
-                <div>
-                  <label>住宅手当</label>
-                  <input {...input} type="text" placeholder="住宅手当" />
-                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <label>一律支給かどうか</label>
-            <Field
-              name="housingAllowance.isUniform"
-              component="input"
-              type="checkbox"
-            />
-          </div>
-          <div>
-            <Field
-              name="commutingAllowance.value"
-              validate={composeValidators(required, mustBeNumber)}
-            >
-              {({ input, meta }) => (
-                <div>
-                  <label>通勤手当</label>
-                  <input {...input} type="text" placeholder="通勤手当" />
-                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <label>支給単位</label>
-            <Field
-              name="commutingAllowance.payUnit"
-              component="select"
-              type="select"
-            >
-              <option value="1month">１ヶ月</option>
-              <option value="3month">3ヶ月</option>
-              <option value="6month">6ヶ月</option>
-            </Field>
-            <label>一律支給かどうか</label>
-            <Field
-              name="commutingAllowance.isUniform"
-              component="input"
-              type="checkbox"
-            />
+
+                <label className="inputLabel">支給単位</label>
+                <Field
+                  className="inputSelectBox"
+                  name="commutingAllowance.payUnit"
+                  component="select"
+                  type="select"
+                >
+                  <option value="1month">１ヶ月</option>
+                  <option value="3month">3ヶ月</option>
+                  <option value="6month">6ヶ月</option>
+                </Field>
+              </div>
+            </div>
           </div>
           <div>
             <label>その他支給</label>
