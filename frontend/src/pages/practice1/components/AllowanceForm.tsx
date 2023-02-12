@@ -2,8 +2,9 @@ import { type FC, useState } from 'react'
 import axios from 'axios'
 import { Form, Field } from 'react-final-form'
 import arrayMutators from 'final-form-arrays'
-import { FieldArray } from 'react-final-form-arrays'
 import applyCaseMiddleware from 'axios-case-converter'
+import OtherAllowanceForm from './OtherAllowanceForm'
+import { required, mustBeNumber, composeValidators } from './formValidators'
 
 const AllowanceForm: FC<FormProps> = (props) => {
   const { initialValues } = props
@@ -143,74 +144,7 @@ const AllowanceForm: FC<FormProps> = (props) => {
                 削除
               </button>
             </div>
-            <FieldArray name="otherAllowance">
-              {({ fields }) =>
-                fields.map((name, index) => (
-                  <div key={name}>
-                    <Field
-                      name={`${name}.name`}
-                      validate={composeValidators(required)}
-                    >
-                      {({ input, meta }) => (
-                        <div>
-                          <label>名称</label>
-                          <input {...input} type="text" placeholder="名称" />
-                          {meta.error ?? meta.touched ?? (
-                            <span>{meta.error}</span>
-                          )}
-                        </div>
-                      )}
-                    </Field>
-                    <Field
-                      name={`${name}.value`}
-                      validate={composeValidators(mustBeNumber)}
-                    >
-                      {({ input, meta }) => (
-                        <div>
-                          <label>単価</label>
-                          <input
-                            {...input}
-                            type="text"
-                            placeholder="その他支給"
-                          />
-                          {meta.error ?? meta.touched ?? (
-                            <span>{meta.error}</span>
-                          )}
-                        </div>
-                      )}
-                    </Field>
-                    <label>支給単位</label>
-                    <Field
-                      name={`${name}.payUnit`}
-                      component="select"
-                      type="select"
-                    >
-                      <option value="1month">１ヶ月</option>
-                      <option value="3month">3ヶ月</option>
-                      <option value="6month">6ヶ月</option>
-                    </Field>
-                    <label>直接労働と関係があるか</label>
-                    <Field
-                      name={`${name}.isRelatedLabor`}
-                      component="input"
-                      type="checkbox"
-                    />
-                    <label>一律支給かどうか</label>
-                    <Field
-                      name={`${name}.isUniform`}
-                      component="input"
-                      type="checkbox"
-                    />
-                    <button
-                      onClick={() => fields.remove(index)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      削除
-                    </button>
-                  </div>
-                ))
-              }
-            </FieldArray>
+            <OtherAllowanceForm />
           </div>
           <div className="buttons">
             <button type="submit" disabled={submitting}>
@@ -231,22 +165,5 @@ const AllowanceForm: FC<FormProps> = (props) => {
 const sleep = async (ms: number): Promise<void> => {
   await new Promise((resolve) => setTimeout(resolve, ms))
 }
-
-const required = (value: inputValue): ErrorMessage =>
-  value !== undefined ? undefined : '値を入力してください'
-
-const mustBeNumber = (value: inputValue): ErrorMessage => {
-  return isNaN(value) && value !== undefined
-    ? '数値を入力してください'
-    : undefined
-}
-
-const composeValidators =
-  (...validators: Array<(value: inputValue) => ErrorMessage>) =>
-  (value: inputValue) =>
-    validators.reduce(
-      (error: ErrorMessage, validator) => error ?? validator(value),
-      undefined
-    )
 
 export default AllowanceForm
