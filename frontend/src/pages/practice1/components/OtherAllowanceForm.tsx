@@ -6,57 +6,86 @@ import { required, mustBeNumber, composeValidators } from './formValidators'
 const OtherAllowanceForm: FC = () => {
   return (
     <FieldArray name="otherAllowance">
-      {({ fields }) =>
-        fields.map((name, index) => (
-          <div key={name}>
-            <Field name={`${name}.name`} validate={composeValidators(required)}>
-              {({ input, meta }) => (
-                <div>
-                  <label>名称</label>
-                  <input {...input} type="text" placeholder="名称" />
-                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+      {({ fields }) => (
+        <div className="otherAllowanceContainers">
+          {fields.map((name, index) => (
+            <div className="otherAllowanceContainer" key={name}>
+              <Field
+                name={`${name}.name`}
+                validate={composeValidators(required)}
+              >
+                {({ input, meta }) => (
+                  <div className="inputColumns">
+                    <label className="allowanceInputLabel">名称</label>
+                    <input
+                      className="inputForm"
+                      {...input}
+                      type="text"
+                      placeholder="名称"
+                    />
+                    {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+              <Field
+                name={`${name}.value`}
+                validate={composeValidators(mustBeNumber)}
+              >
+                {({ input, meta }) => (
+                  <div className="inputColumns">
+                    <label className="allowanceInputLabel">単価</label>
+                    <input
+                      className="inputForm"
+                      {...input}
+                      type="text"
+                      placeholder="その他支給"
+                    />
+                    {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+              <div className="inputColumns">
+                <label className="allowanceInputLabel">支給単位</label>
+                <Field
+                  className="inputSelectBox"
+                  name={`${name}.payUnit`}
+                  component="select"
+                  type="select"
+                >
+                  <option value="1month">1ヶ月</option>
+                  <option value="3month">3ヶ月</option>
+                  <option value="6month">6ヶ月</option>
+                </Field>
+                <label className="inputLabel">直接労働と関係があるか</label>
+                <div className="inputLabel">
+                  <Field
+                    className="inputCheckBox"
+                    name={`${name}.isRelatedLabor`}
+                    component="input"
+                    type="checkbox"
+                  />
                 </div>
-              )}
-            </Field>
-            <Field
-              name={`${name}.value`}
-              validate={composeValidators(mustBeNumber)}
-            >
-              {({ input, meta }) => (
-                <div>
-                  <label>単価</label>
-                  <input {...input} type="text" placeholder="その他支給" />
-                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                <label className="inputLabel">一律支給かどうか</label>
+                <div className="inputLabel">
+                  <Field
+                    className="inputCheckBox"
+                    name={`${name}.isUniform`}
+                    component="input"
+                    type="checkbox"
+                  />
                 </div>
-              )}
-            </Field>
-            <label>支給単位</label>
-            <Field name={`${name}.payUnit`} component="select" type="select">
-              <option value="1month">１ヶ月</option>
-              <option value="3month">3ヶ月</option>
-              <option value="6month">6ヶ月</option>
-            </Field>
-            <label>直接労働と関係があるか</label>
-            <Field
-              name={`${name}.isRelatedLabor`}
-              component="input"
-              type="checkbox"
-            />
-            <label>一律支給かどうか</label>
-            <Field
-              name={`${name}.isUniform`}
-              component="input"
-              type="checkbox"
-            />
-            <button
-              onClick={() => fields.remove(index)}
-              style={{ cursor: 'pointer' }}
-            >
-              削除
-            </button>
-          </div>
-        ))
-      }
+                <button
+                  className="smButton bg-red-500"
+                  onClick={() => fields.remove(index)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  削除
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </FieldArray>
   )
 }

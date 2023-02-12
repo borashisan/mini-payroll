@@ -164,7 +164,7 @@ const AllowanceForm: FC<FormProps> = (props) => {
                   component="select"
                   type="select"
                 >
-                  <option value="1month">１ヶ月</option>
+                  <option value="1month">1ヶ月</option>
                   <option value="3month">3ヶ月</option>
                   <option value="6month">6ヶ月</option>
                 </Field>
@@ -173,16 +173,16 @@ const AllowanceForm: FC<FormProps> = (props) => {
           </div>
           <div>
             <div className="mt-4">その他支給</div>
-            <div className="buttons flex gap-x-2">
+            <div className="buttons middleButtons">
               <button
-                className="smButton bg-gray-200"
+                className="mdButton bg-gray-200"
                 type="button"
                 onClick={() => push('otherAllowance', undefined)}
               >
                 追加
               </button>
               <button
-                className="smButton bg-red-500"
+                className="mdButton bg-red-500"
                 type="button"
                 onClick={() => pop('otherAllowance')}
               >
@@ -191,25 +191,27 @@ const AllowanceForm: FC<FormProps> = (props) => {
             </div>
             <OtherAllowanceForm />
           </div>
-          <div className="buttons middleButtons">
+          <div className="buttons largeButtons">
             <button
-              className="mdButton bg-blue-400"
+              className="lgButton bg-blue-400"
               type="submit"
               disabled={submitting}
             >
-              Submit
+              計算
             </button>
             <button
-              className="mdButton bg-gray-200"
+              className="lgButton bg-gray-200"
               type="button"
               onClick={form.reset}
               disabled={submitting}
             >
-              Reset
+              元に戻す
             </button>
           </div>
-          <h2>合計: {sum}</h2>
-          <pre>{JSON.stringify(values)}</pre>
+          <div className="grid gap-y-4">
+            <h2 className="result">合計: {sum}</h2>
+            <pre className="json">{JSON.stringify(values, null, '\t')}</pre>
+          </div>
         </form>
       )}
     />
