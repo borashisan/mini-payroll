@@ -46,6 +46,15 @@
     @apply w-5 h-5 cursor-pointer
   }
   .inputSelectBox {
-    @apply w-20 cursor-pointer
+    @apply w-20 cursor-pointer rounded
+  }
+  .smButton {
+    @apply p-2 w-32 rounded-md
+  }
+  .mdButton {
+    @apply p-2 w-48 rounded-md
+  }
+  .middleButtons {
+    @apply flex my-12 justify-center gap-x-4
   }
 }

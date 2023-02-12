@@ -133,7 +133,7 @@ const AllowanceForm: FC<FormProps> = (props) => {
                 <label className="allowanceInputLabel">通勤手当</label>
                 <Field
                   name="commutingAllowance.value"
-                  validate={composeValidators(required, mustBeNumber)}
+                  validate={composeValidators(mustBeNumber)}
                 >
                   {({ input, meta }) => (
                     <>
@@ -172,25 +172,39 @@ const AllowanceForm: FC<FormProps> = (props) => {
             </div>
           </div>
           <div>
-            <label>その他支給</label>
-            <div className="buttons">
+            <div className="mt-4">その他支給</div>
+            <div className="buttons flex gap-x-2">
               <button
+                className="smButton bg-gray-200"
                 type="button"
                 onClick={() => push('otherAllowance', undefined)}
               >
                 追加
               </button>
-              <button type="button" onClick={() => pop('otherAllowance')}>
+              <button
+                className="smButton bg-red-500"
+                type="button"
+                onClick={() => pop('otherAllowance')}
+              >
                 削除
               </button>
             </div>
             <OtherAllowanceForm />
           </div>
-          <div className="buttons">
-            <button type="submit" disabled={submitting}>
+          <div className="buttons middleButtons">
+            <button
+              className="mdButton bg-blue-400"
+              type="submit"
+              disabled={submitting}
+            >
               Submit
             </button>
-            <button type="button" onClick={form.reset} disabled={submitting}>
+            <button
+              className="mdButton bg-gray-200"
+              type="button"
+              onClick={form.reset}
+              disabled={submitting}
+            >
               Reset
             </button>
           </div>
