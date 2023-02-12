@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .sideMenuBtn {
+    @apply flex justify-center items-center p-4 border border-gray-100;
+  }
+  .main {
+    @apply bg-gray-100 p-8 h-screen flex justify-center
+  }
+  .mainContainer {
+    @apply container w-5/6 bg-white border border-gray-200 rounded
+  }
+  .containerHeader {
+    @apply p-4 text-2xl font-medium bg-gray-200
+  }
+}

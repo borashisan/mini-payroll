@@ -101,19 +101,21 @@ const composeValidators =
 const Practice1: FC = () => {
   const [initialValues, setInitializeValues] = useState(case1)
   return (
-    <>
-      <h1>問題1</h1>
-      <div>
-        <button onClick={() => setInitializeValues(case1)}>事例1</button>
-        <button onClick={() => setInitializeValues(case2)}>事例2</button>
-        <button onClick={() => setInitializeValues(freeFormat)}>
-          自由記述
-        </button>
+    <div className="main">
+      <div className="mainContainer">
+        <h1 className="containerHeader">演習1</h1>
+        <div>
+          <button onClick={() => setInitializeValues(case1)}>事例1</button>
+          <button onClick={() => setInitializeValues(case2)}>事例2</button>
+          <button onClick={() => setInitializeValues(freeFormat)}>
+            自由記述
+          </button>
+        </div>
+        <div>
+          <AllowanceForm initialValues={initialValues} />
+        </div>
       </div>
-      <div>
-        <AllowanceForm initialValues={initialValues} />
-      </div>
-    </>
+    </div>
   )
 }
 

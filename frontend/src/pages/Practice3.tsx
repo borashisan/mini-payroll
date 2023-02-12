@@ -3,9 +3,11 @@ import { type FC } from 'react'
 
 const Practice3: FC = () => {
   return (
-    <>
-      <h1>問題3</h1>
-    </>
+    <div className="main">
+      <div className="mainContainer">
+        <h1 className="containerHeader">演習3</h1>
+      </div>
+    </div>
   )
 }
 
