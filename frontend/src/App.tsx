@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './pages/components/Header'
 import SideMenu from './pages/components/SideMenu'
 import Home from './pages/Home'
-import Practice1 from './pages/Practice1'
-import Practice2 from './pages/Practice2'
-import Practice3 from './pages/Practice3'
+import Practice1 from './pages/practice1/Practice1'
+import Practice2 from './pages/practice2/Practice2'
+import Practice3 from './pages/practice3/Practice3'
 import Test from './pages/Test'
 
 const App: FC = () => {
