@@ -3,8 +3,10 @@
 class PayDeductionService
   # 割増賃金の基礎となる賃金の合計を計算する
   def calculate_basis_for_extra_pay(params)
+    # 実務に関連する支給かどうか判別するためにkeyの文字列をnameに保持する
     main_pay_deduction_hash = params.reject { |key| key == 'other_allowance' }.each { |key, value| value['name'] = key }
     main_pay_deductions = main_pay_deduction_hash.values
+
     other_pay_deductions = params.fetch(:other_allowance, [])
 
     # 基本給が存在しなければ例外を返す
