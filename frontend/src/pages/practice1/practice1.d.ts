@@ -4,7 +4,6 @@ type inputValue = number
 
 type AllowanceValuesType = {
   value: string
-  isRelatedLabor: boolean
   isUniform?: boolean
   payUnit?: string
 }

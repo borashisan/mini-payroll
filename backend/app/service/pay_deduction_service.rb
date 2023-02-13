@@ -3,7 +3,8 @@
 class PayDeductionService
   # 割増賃金の基礎となる賃金の合計を計算する
   def calculate_basis_for_extra_pay(params)
-    main_pay_deductions = params.reject { |key| key == 'other_allowance' }.values
+    main_pay_deduction_hash = params.reject { |key| key == 'other_allowance' }.each { |key, value| value['name'] = key }
+    main_pay_deductions = main_pay_deduction_hash.values
     other_pay_deductions = params.fetch(:other_allowance, [])
 
     # 基本給が存在しなければ例外を返す
@@ -43,7 +44,10 @@ class PayDeductionService
     end
   end
 
+  DEFALT_ALLOWANCE_RELATED_LABOR = %w[base_salary position_allowance qualification_allowance].map(&:freeze).freeze
   def is_related_labor?(allowance)
+    return true if DEFALT_ALLOWANCE_RELATED_LABOR.include?(allowance.fetch(:name, nil))
+
     allowance.fetch(:is_related_labor, nil)
   end
 

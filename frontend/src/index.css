@@ -7,72 +7,72 @@
     @apply flex justify-center items-center p-4 border border-gray-100;
   }
   .main {
-    @apply bg-gray-100 p-8 min-h-screen flex justify-center
+    @apply bg-gray-100 p-8 min-h-screen flex justify-center;
   }
   .mainContainer {
-    @apply container w-5/6 h-auto bg-white border border-gray-200 rounded
+    @apply container w-5/6 h-auto bg-white border border-gray-200 rounded;
   }
   .containerHeader {
-    @apply p-4 text-2xl font-medium bg-gray-200
+    @apply p-4 text-2xl font-medium bg-gray-200;
   }
   .containerContents {
-    @apply p-4
+    @apply p-4;
   }
   .containerTabs {
-    @apply flex justify-start
+    @apply flex justify-start;
   }
   .containerTab {
-    @apply flex justify-center items-center p-4 w-32 border border-gray-100 rounded-sm
+    @apply flex justify-center items-center p-4 w-32 border border-gray-100 rounded-sm;
   }
   .description {
-    @apply p-4 border border-gray-200 rounded
+    @apply p-4 border border-gray-200 rounded;
   }
   .inputRows {
-    @apply grid gap-y-2
+    @apply grid gap-y-2;
   }
   .inputColumns {
-    @apply flex gap-x-4
+    @apply flex gap-x-4;
   }
   .allowanceInputLabel {
-    @apply flex items-center w-20
+    @apply flex items-center w-20;
   }
   .inputForm {
-    @apply p-1 border rounded w-56
+    @apply p-1 border rounded w-56;
   }
   .inputLabel {
-    @apply flex items-center
+    @apply flex items-center;
   }
   .inputCheckBox {
-    @apply w-5 h-5 cursor-pointer
+    @apply w-5 h-5 cursor-pointer;
   }
   .inputSelectBox {
-    @apply w-20 cursor-pointer rounded
+    @apply w-20 cursor-pointer rounded;
   }
   .smButton {
-    @apply p-1 w-16 rounded-md
+    @apply p-1 w-16 rounded-md;
   }
   .mdButton {
-    @apply p-2 w-32 rounded-md
+    @apply p-2 w-32 rounded-md;
   }
   .middleButtons {
-    @apply flex gap-x-2 my-4
+    @apply flex gap-x-2 my-4;
   }
   .lgButton {
-    @apply p-2 w-48 rounded-md
+    @apply p-2 w-48 rounded-md;
   }
   .largeButtons {
-    @apply flex my-12 justify-center gap-x-4
+    @apply flex my-12 justify-center gap-x-4;
   }
   .otherAllowanceContainer {
-    @apply p-4 border border-gray-100 rounded grid gap-y-2
+    @apply p-4 border border-gray-100 rounded grid gap-y-2;
   }
   .otherAllowanceContainers {
-    @apply grid gap-y-2
+    @apply grid gap-y-2;
   }
   .result {
-    @apply text-4xl font-bold p-4 border border-gray-200
+    @apply text-4xl font-bold p-4 border border-gray-200;
   }
   .json {
-    @apply p-4 border border-gray-200
+    @apply p-4 border border-gray-200;
   }
 }

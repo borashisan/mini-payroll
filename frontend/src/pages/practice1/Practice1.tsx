@@ -42,32 +42,28 @@ const Practice1: FC = () => {
 }
 
 const case1: AllowancesType = {
-  baseSalary: { value: '320000', isRelatedLabor: true },
-  positionAllowance: { value: '70000', isRelatedLabor: true },
+  baseSalary: { value: '320000' },
+  positionAllowance: { value: '70000' },
   housingAllowance: {
     value: '35000',
-    isRelatedLabor: false,
     isUniform: false,
   },
   commutingAllowance: {
     value: '14000',
-    isRelatedLabor: false,
     isUniform: false,
     payUnit: '1month',
   },
 }
 
 const case2: AllowancesType = {
-  baseSalary: { value: '215000', isRelatedLabor: true },
-  qualificationAllowance: { value: '5000', isRelatedLabor: true },
+  baseSalary: { value: '215000' },
+  qualificationAllowance: { value: '5000' },
   housingAllowance: {
     value: '10000',
-    isRelatedLabor: false,
     isUniform: true,
   },
   commutingAllowance: {
     value: '24372',
-    isRelatedLabor: false,
     isUniform: false,
     payUnit: '3month',
   },
@@ -82,7 +78,7 @@ const case2: AllowancesType = {
 }
 
 const freeFormat: AllowancesType = {
-  baseSalary: { value: '0', isRelatedLabor: true },
+  baseSalary: { value: '0' },
 }
 
 export default Practice1
