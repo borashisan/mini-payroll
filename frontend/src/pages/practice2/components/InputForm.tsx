@@ -6,9 +6,11 @@ import applyCaseMiddleware from 'axios-case-converter'
 import SubmitButtons from '../../components/SubmitButtons'
 import { type FormProps } from '../../types'
 import AllowanceForm from '../../components/AllowanceForm'
+import LaborRegulationForm from './LaborRegulationForm'
+import AttendanceForm from './AttendanceForm'
 
 const InputForm: FC<FormProps> = (props) => {
-  const { sum, setSum } = props
+  const { initialValues, sum, setSum } = props
   const onSubmit = async (values: object): Promise<void> => {
     axios.defaults.baseURL = 'http://localhost:4500'
     const url = '/practices/practice1'
@@ -33,6 +35,7 @@ const InputForm: FC<FormProps> = (props) => {
       mutators={{
         ...arrayMutators,
       }}
+      initialValues={initialValues}
       render={({
         handleSubmit,
         form,
@@ -43,9 +46,16 @@ const InputForm: FC<FormProps> = (props) => {
         values,
       }) => (
         <form onSubmit={handleSubmit}>
-          <div className="flex">
-            <AllowanceForm push={push} pop={pop} />
-            <div>aaa</div>
+          <div className="flex gap-8">
+            <div>
+              <LaborRegulationForm />
+              <AllowanceForm push={push} pop={pop} />
+            </div>
+            <div>
+              <div>
+                <AttendanceForm push={push} pop={pop} />
+              </div>
+            </div>
           </div>
           <SubmitButtons
             submitting={submitting}

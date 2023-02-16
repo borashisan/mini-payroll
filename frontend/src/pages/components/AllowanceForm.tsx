@@ -145,23 +145,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
       </div>
       <div>
         <div className="mt-4">その他支給</div>
-        <div className="buttons middleButtons">
-          <button
-            className="mdButton bg-gray-200"
-            type="button"
-            onClick={() => push('otherAllowance', undefined)}
-          >
-            追加
-          </button>
-          <button
-            className="mdButton bg-red-500"
-            type="button"
-            onClick={() => pop('otherAllowance')}
-          >
-            削除
-          </button>
-        </div>
-        <OtherAllowanceForm />
+        <OtherAllowanceForm push={push} pop={pop} />
       </div>
     </div>
   )

@@ -10,7 +10,7 @@
     @apply bg-gray-100 p-8 min-h-screen flex justify-center;
   }
   .mainContainer {
-    @apply container w-5/6 h-auto bg-white border border-gray-200 rounded;
+    @apply container w-11/12 h-auto bg-white border border-gray-200 rounded;
   }
   .containerHeader {
     @apply p-4 text-2xl font-medium bg-gray-200;
@@ -36,6 +36,9 @@
   .allowanceInputLabel {
     @apply flex items-center w-20;
   }
+  .laborRegulationInputLabel {
+    @apply flex items-center w-40;
+  }
   .inputForm {
     @apply p-1 border rounded w-56;
   }
@@ -46,7 +49,7 @@
     @apply w-5 h-5 cursor-pointer;
   }
   .inputSelectBox {
-    @apply w-20 cursor-pointer rounded;
+    @apply cursor-pointer rounded;
   }
   .smButton {
     @apply p-1 w-16 rounded-md;
