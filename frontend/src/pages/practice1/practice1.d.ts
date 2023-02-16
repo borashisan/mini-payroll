@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 type ErrorMessage = string | undefined
 
 type inputValue = number
@@ -27,4 +29,6 @@ type AllowancesType = {
 
 type FormProps = {
   initialValues: AllowancesType
+  sum: number
+  setSum: Dispatch<SetStateAction<number>>
 }

@@ -1,18 +1,26 @@
-import { type FC, useState } from 'react'
+import { type FC } from 'react'
 import axios from 'axios'
 import { Form, Field } from 'react-final-form'
 import arrayMutators from 'final-form-arrays'
 import applyCaseMiddleware from 'axios-case-converter'
 import OtherAllowanceForm from './OtherAllowanceForm'
-import { required, mustBeNumber, composeValidators } from './formValidators'
+import SubmitButtons from '../../components/SubmitButtons'
+import { type FormProps } from '../practice1'
+import {
+  required,
+  mustBeNumber,
+  composeValidators,
+} from '../../utils/formValidators'
 
 const AllowanceForm: FC<FormProps> = (props) => {
-  const { initialValues } = props
-  const [sum, setSum] = useState(0)
+  const { initialValues, sum, setSum } = props
 
   const onSubmit = async (values: object): Promise<void> => {
     axios.defaults.baseURL = 'http://localhost:4500'
     const url = '/practices/practice1'
+    const sleep = async (ms: number): Promise<void> => {
+      await new Promise((resolve) => setTimeout(resolve, ms))
+    }
     await sleep(300)
     const client = applyCaseMiddleware(axios.create())
     client
@@ -191,23 +199,11 @@ const AllowanceForm: FC<FormProps> = (props) => {
             </div>
             <OtherAllowanceForm />
           </div>
-          <div className="buttons largeButtons">
-            <button
-              className="lgButton bg-blue-400"
-              type="submit"
-              disabled={submitting}
-            >
-              計算
-            </button>
-            <button
-              className="lgButton bg-gray-200"
-              type="button"
-              onClick={form.reset}
-              disabled={submitting}
-            >
-              元に戻す
-            </button>
-          </div>
+          <SubmitButtons
+            submitting={submitting}
+            reset={form.reset}
+            setSum={setSum}
+          />
           <div className="grid gap-y-4">
             <h2 className="result">合計: {sum}</h2>
             <pre className="json">{JSON.stringify(values, null, '\t')}</pre>
@@ -216,10 +212,6 @@ const AllowanceForm: FC<FormProps> = (props) => {
       )}
     />
   )
-}
-
-const sleep = async (ms: number): Promise<void> => {
-  await new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 export default AllowanceForm

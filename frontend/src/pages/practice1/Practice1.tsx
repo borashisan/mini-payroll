@@ -1,8 +1,10 @@
 import { type FC, useState } from 'react'
 import AllowanceForm from './components/AllowanceForm'
+import { type AllowancesType } from './practice1'
 
 const Practice1: FC = () => {
   const [initialValues, setInitializeValues] = useState(case1)
+  const [sum, setSum] = useState(0)
   return (
     <div className="main">
       <div className="mainContainer">
@@ -10,19 +12,28 @@ const Practice1: FC = () => {
         <div className="containerTabs">
           <button
             className="containerTab"
-            onClick={() => setInitializeValues(case1)}
+            onClick={() => {
+              setInitializeValues(case1)
+              setSum(0)
+            }}
           >
             事例1
           </button>
           <button
             className="containerTab"
-            onClick={() => setInitializeValues(case2)}
+            onClick={() => {
+              setInitializeValues(case2)
+              setSum(0)
+            }}
           >
             事例2
           </button>
           <button
             className="containerTab"
-            onClick={() => setInitializeValues(freeFormat)}
+            onClick={() => {
+              setInitializeValues(freeFormat)
+              setSum(0)
+            }}
           >
             自由記述
           </button>
@@ -33,7 +44,11 @@ const Practice1: FC = () => {
             次の事例について、割増賃金の基礎となる賃金の合計を計算してください。
           </p>
           <div className="p-4">
-            <AllowanceForm initialValues={initialValues} />
+            <AllowanceForm
+              initialValues={initialValues}
+              sum={sum}
+              setSum={setSum}
+            />
           </div>
         </div>
       </div>
