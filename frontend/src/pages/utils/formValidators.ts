@@ -1,3 +1,5 @@
+import { inputValue, ErrorMessage } from '../types'
+
 export const required = (value: inputValue): ErrorMessage =>
   value !== undefined ? undefined : '値を入力してください'
 

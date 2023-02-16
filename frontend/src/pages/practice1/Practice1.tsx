@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react'
-import AllowanceForm from './components/AllowanceForm'
-import { type AllowancesType } from './practice1'
+import InputForm from './components/InputForm'
+import { type AllowancesType } from '../practice1/types'
 
 const Practice1: FC = () => {
   const [initialValues, setInitializeValues] = useState(case1)
@@ -44,7 +44,7 @@ const Practice1: FC = () => {
             次の事例について、割増賃金の基礎となる賃金の合計を計算してください。
           </p>
           <div className="p-4">
-            <AllowanceForm
+            <InputForm
               initialValues={initialValues}
               sum={sum}
               setSum={setSum}

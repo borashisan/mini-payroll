@@ -5,7 +5,7 @@ import {
   required,
   mustBeNumber,
   composeValidators,
-} from '../../utils/formValidators'
+} from '../utils/formValidators'
 
 const OtherAllowanceForm: FC = () => {
   return (

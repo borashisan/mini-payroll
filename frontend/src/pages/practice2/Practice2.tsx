@@ -1,7 +1,8 @@
-import { type FC } from 'react'
-import AllowanceForm from './components/AllowanceForm'
+import { type FC, useState } from 'react'
+import InputForm from './components/InputForm'
 
 const Practice2: FC = () => {
+  const [sum, setSum] = useState(0)
   return (
     <div className="main">
       <div className="mainContainer">
@@ -9,11 +10,10 @@ const Practice2: FC = () => {
         <div className="containerTabs"></div>
         <div className="containerContents">
           <p className="description">
-            問.
-            次の事例について、割増賃金の基礎となる賃金の合計を計算してください。
+            問. 次の事例について、割増賃金の合計を計算してください。
           </p>
           <div className="p-4">
-            <AllowanceForm />
+            <InputForm sum={sum} setSum={setSum} />
           </div>
         </div>
       </div>
