@@ -6,6 +6,11 @@ class PracticesController < ApplicationController
     render json: { payload: { basis_for_extra_pay: } }
   end
 
+  def practice2
+    extra_pay_amount = PayDeductionService.new.calculate_extra_pay_amount(pay_deduction_params(params))
+    render json: { payload: { extra_pay_amount: } }
+  end
+
   private
 
   def pay_deduction_params(params)

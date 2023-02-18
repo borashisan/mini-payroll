@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'tests/fetch'
 
   post 'practices/practice1'
+
+  post 'practices/practice2'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

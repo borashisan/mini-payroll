@@ -12,7 +12,7 @@ const LaborRegulationForm: FC = () => {
       <div className="inputRows">
         <div>
           <Field
-            name="yearPrescribedWorkingDays.value"
+            name="laborRegulations.yearPrescribedWorkingDays.value"
             validate={composeValidators(required, mustBeNumber)}
           >
             {({ input, meta }) => (
@@ -32,29 +32,49 @@ const LaborRegulationForm: FC = () => {
           </Field>
         </div>
         <div>
-          <Field
-            name="dailyPrescribedWorkingHours.value"
-            validate={composeValidators(required, mustBeNumber)}
-          >
-            {({ input, meta }) => (
-              <div className="inputColumns">
-                <label className="laborRegulationInputLabel">
-                  1日の所定労働日数
-                </label>
-                <input
-                  className="inputForm"
-                  {...input}
-                  type="text"
-                  placeholder="1日の所定労働日数"
-                />
-                {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
+          <div className="inputColumns">
+            <label className="laborRegulationInputLabel">
+              1日の所定労働時間
+            </label>
+            <Field
+              name="laborRegulations.dailyPrescribedWorkingHours.hour.value"
+              validate={composeValidators(required, mustBeNumber)}
+            >
+              {({ input, meta }) => (
+                <>
+                  <input
+                    className="timeInputForm"
+                    {...input}
+                    type="text"
+                    placeholder="1日の所定労働時間"
+                  />
+                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                </>
+              )}
+            </Field>
+            <label className="timeLabel">時間</label>
+            <Field
+              name="laborRegulations.dailyPrescribedWorkingHours.minute.value"
+              validate={composeValidators(mustBeNumber)}
+            >
+              {({ input, meta }) => (
+                <>
+                  <input
+                    className="timeInputForm"
+                    {...input}
+                    type="text"
+                    placeholder="1日の所定労働時間"
+                  />
+                  {meta.error ?? meta.touched ?? <span>{meta.error}</span>}
+                </>
+              )}
+            </Field>
+            <label className="timeLabel">分</label>
+          </div>
         </div>
         <div>
           <Field
-            name="closingDate.value"
+            name="laborRegulations.closingDate.value"
             validate={composeValidators(required, mustBeNumber)}
           >
             {({ input, meta }) => (
@@ -73,7 +93,7 @@ const LaborRegulationForm: FC = () => {
         </div>
         <div className="inputColumns">
           <Field
-            name="payDate.value"
+            name="laborRegulations.payDate.value"
             validate={composeValidators(required, mustBeNumber)}
           >
             {({ input, meta }) => (
@@ -91,7 +111,7 @@ const LaborRegulationForm: FC = () => {
           </Field>
           <Field
             className="inputSelectBox"
-            name="payMonth"
+            name="laborRegulations.payDate.payMonth"
             component="select"
             type="select"
           >

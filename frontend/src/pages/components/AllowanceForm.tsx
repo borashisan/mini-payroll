@@ -20,7 +20,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
       <div className="inputRows">
         <div>
           <Field
-            name="baseSalary.value"
+            name="allowances.baseSalary.value"
             validate={composeValidators(required, mustBeNumber)}
           >
             {({ input, meta }) => (
@@ -39,7 +39,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
         </div>
         <div>
           <Field
-            name="positionAllowance.value"
+            name="allowances.positionAllowance.value"
             validate={composeValidators(mustBeNumber)}
           >
             {({ input, meta }) => (
@@ -57,7 +57,10 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
           </Field>
         </div>
         <div>
-          <Field name="qualificationAllowance.value" validate={mustBeNumber}>
+          <Field
+            name="allowances.qualificationAllowance.value"
+            validate={mustBeNumber}
+          >
             {({ input, meta }) => (
               <div className="inputColumns">
                 <label className="allowanceInputLabel">資格手当</label>
@@ -75,7 +78,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
         <div className="inputColumns">
           <label className="allowanceInputLabel">住宅手当</label>
           <Field
-            name="housingAllowance.value"
+            name="allowances.housingAllowance.value"
             validate={composeValidators(mustBeNumber)}
           >
             {({ input, meta }) => (
@@ -94,7 +97,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
           <div className="inputLabel">
             <Field
               className="inputCheckBox"
-              name="housingAllowance.isUniform"
+              name="allowances.housingAllowance.isUniform"
               component="input"
               type="checkbox"
             />
@@ -104,7 +107,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
           <div className="inputColumns">
             <label className="allowanceInputLabel">通勤手当</label>
             <Field
-              name="commutingAllowance.value"
+              name="allowances.commutingAllowance.value"
               validate={composeValidators(mustBeNumber)}
             >
               {({ input, meta }) => (
@@ -123,7 +126,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
             <div className="inputLabel">
               <Field
                 className="inputCheckBox"
-                name="commutingAllowance.isUniform"
+                name="allowances.commutingAllowance.isUniform"
                 component="input"
                 type="checkbox"
               />
@@ -132,7 +135,7 @@ const AllowanceForm: FC<AllowanceProps> = (props) => {
             <label className="inputLabel">支給単位</label>
             <Field
               className="inputSelectBox"
-              name="commutingAllowance.payUnit"
+              name="allowances.commutingAllowance.payUnit"
               component="select"
               type="select"
             >

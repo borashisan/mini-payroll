@@ -13,7 +13,7 @@ const InputForm: FC<FormProps> = (props) => {
   const { initialValues, sum, setSum } = props
   const onSubmit = async (values: object): Promise<void> => {
     axios.defaults.baseURL = 'http://localhost:4500'
-    const url = '/practices/practice1'
+    const url = '/practices/practice2'
     const sleep = async (ms: number): Promise<void> => {
       await new Promise((resolve) => setTimeout(resolve, ms))
     }
@@ -22,7 +22,7 @@ const InputForm: FC<FormProps> = (props) => {
     client
       .post(url, { payDeductionParams: values })
       .then((response) => {
-        setSum(response.data.payload.basisForExtraPay)
+        setSum(response.data.payload.extraPayAmount)
       })
       .catch(() => {
         console.log('error')

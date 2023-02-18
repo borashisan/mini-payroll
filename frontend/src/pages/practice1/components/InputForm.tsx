@@ -10,6 +10,7 @@ import { AllowancesType } from '../types'
 
 const InputForm: FC<FormProps<AllowancesType>> = (props) => {
   const { initialValues, sum, setSum } = props
+  console.log(initialValues)
   const onSubmit = async (values: object): Promise<void> => {
     axios.defaults.baseURL = 'http://localhost:4500'
     const url = '/practices/practice1'

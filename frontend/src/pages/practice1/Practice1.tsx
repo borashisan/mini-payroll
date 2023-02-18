@@ -57,43 +57,49 @@ const Practice1: FC = () => {
 }
 
 const case1: AllowancesType = {
-  baseSalary: { value: '320000' },
-  positionAllowance: { value: '70000' },
-  housingAllowance: {
-    value: '35000',
-    isUniform: false,
-  },
-  commutingAllowance: {
-    value: '14000',
-    isUniform: false,
-    payUnit: '1month',
+  allowances: {
+    baseSalary: { value: '320000' },
+    positionAllowance: { value: '70000' },
+    housingAllowance: {
+      value: '35000',
+      isUniform: false,
+    },
+    commutingAllowance: {
+      value: '14000',
+      isUniform: false,
+      payUnit: '1month',
+    },
   },
 }
 
 const case2: AllowancesType = {
-  baseSalary: { value: '215000' },
-  qualificationAllowance: { value: '5000' },
-  housingAllowance: {
-    value: '10000',
-    isUniform: true,
-  },
-  commutingAllowance: {
-    value: '24372',
-    isUniform: false,
-    payUnit: '3month',
-  },
-  otherAllowance: [
-    {
-      name: '家族手当',
-      value: '16000',
-      isRelatedLabor: false,
-      isUniform: false,
+  allowances: {
+    baseSalary: { value: '215000' },
+    qualificationAllowance: { value: '5000' },
+    housingAllowance: {
+      value: '10000',
+      isUniform: true,
     },
-  ],
+    commutingAllowance: {
+      value: '24372',
+      isUniform: false,
+      payUnit: '3month',
+    },
+    otherAllowance: [
+      {
+        name: '家族手当',
+        value: '16000',
+        isRelatedLabor: false,
+        isUniform: false,
+      },
+    ],
+  },
 }
 
 const freeFormat: AllowancesType = {
-  baseSalary: { value: '0' },
+  allowances: {
+    baseSalary: { value: '0' },
+  },
 }
 
 export default Practice1

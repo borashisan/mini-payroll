@@ -7,7 +7,9 @@ RSpec.describe 'Practices', type: :request do
     let(:params) do
       {
         pay_deduction_params: {
-          base_salary: { value: '320000' }
+          allowances: {
+            base_salary: { value: '320000' }
+          }
         }
       }.with_indifferent_access
     end

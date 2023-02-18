@@ -12,7 +12,32 @@ export type OtherAllowanceValuesType = {
   payUnit?: string
 }
 
+export type AttendancesType = {
+  attendanceName: string
+  value: string
+}
+
 export type AllowancesType = {
+  laborRegulations: {
+    yearPrescribedWorkingDays: {
+      value: string
+    }
+    dailyPrescribedWorkingHours: {
+      hour: {
+        value: string
+      }
+      minute?: {
+        value: string
+      }
+    }
+    closingDate?: {
+      value: string
+    }
+    payDate?: {
+      value: string
+      payMonth: string
+    }
+  }
   allowances: {
     baseSalary: AllowanceValuesType
     positionAllowance?: AllowanceValuesType
@@ -21,4 +46,5 @@ export type AllowancesType = {
     commutingAllowance?: AllowanceValuesType
     otherAllowance?: OtherAllowanceValuesType[]
   }
+  attendances?: AttendancesType[]
 }

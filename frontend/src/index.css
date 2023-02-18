@@ -39,8 +39,14 @@
   .laborRegulationInputLabel {
     @apply flex items-center w-40;
   }
+  .timeLabel {
+    @apply flex items-center w-8;
+  }
   .inputForm {
     @apply p-1 border rounded w-56;
+  }
+  .timeInputForm {
+    @apply p-1 border rounded w-28;
   }
   .inputLabel {
     @apply flex items-center;

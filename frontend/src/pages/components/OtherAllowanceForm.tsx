@@ -19,19 +19,19 @@ const OtherAllowanceForm: FC<AllowanceProps> = (props) => {
         <button
           className="mdButton bg-gray-200"
           type="button"
-          onClick={() => push('otherAllowance', undefined)}
+          onClick={() => push('allowances.otherAllowance', undefined)}
         >
           追加
         </button>
         <button
           className="mdButton bg-red-500"
           type="button"
-          onClick={() => pop('otherAllowance')}
+          onClick={() => pop('allowances.otherAllowance')}
         >
           削除
         </button>
       </div>
-      <FieldArray name="otherAllowance">
+      <FieldArray name="allowances.otherAllowance">
         {({ fields }) => (
           <div className="otherAllowanceContainers">
             {fields.map((name, index) => (
@@ -54,7 +54,7 @@ const OtherAllowanceForm: FC<AllowanceProps> = (props) => {
                   )}
                 </Field>
                 <Field
-                  name={`${name}.value`}
+                  name={`allowances.${name}.value`}
                   validate={composeValidators(mustBeNumber)}
                 >
                   {({ input, meta }) => (
@@ -74,7 +74,7 @@ const OtherAllowanceForm: FC<AllowanceProps> = (props) => {
                   <label className="allowanceInputLabel">支給単位</label>
                   <Field
                     className="inputSelectBox"
-                    name={`${name}.payUnit`}
+                    name={`allowances.${name}.payUnit`}
                     component="select"
                     type="select"
                   >
@@ -86,7 +86,7 @@ const OtherAllowanceForm: FC<AllowanceProps> = (props) => {
                   <div className="inputLabel">
                     <Field
                       className="inputCheckBox"
-                      name={`${name}.isRelatedLabor`}
+                      name={`allowances.${name}.isRelatedLabor`}
                       component="input"
                       type="checkbox"
                     />
@@ -95,7 +95,7 @@ const OtherAllowanceForm: FC<AllowanceProps> = (props) => {
                   <div className="inputLabel">
                     <Field
                       className="inputCheckBox"
-                      name={`${name}.isUniform`}
+                      name={`allowances.${name}.isUniform`}
                       component="input"
                       type="checkbox"
                     />

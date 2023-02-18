@@ -1,11 +1,7 @@
 import { type FC } from 'react'
 import { Field } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'
-import {
-  required,
-  mustBeNumber,
-  composeValidators,
-} from '../../utils/formValidators'
+import { mustBeNumber, composeValidators } from '../../utils/formValidators'
 
 type AttendanceProps = {
   push: (name: string, value: undefined) => void
@@ -47,8 +43,8 @@ const AttendanceForm: FC<AttendanceProps> = (props) => {
                     type="select"
                   >
                     <option value="overtime">時間外労働時間</option>
-                    <option value="lateNight">深夜労働時間</option>
-                    <option value="legalHoliday">法定休日労働時間</option>
+                    <option value="late_night">深夜労働時間</option>
+                    <option value="legal_holiday">法定休日労働時間</option>
                   </Field>
                   <Field
                     name={`${name}.value`}
