@@ -2,23 +2,37 @@
 
 class PayDeductionService
   def calculate_extra_pay_amount(params)
+    # パラメータから就業規則を取得する
     labor_regulations = params.fetch(:labor_regulations, nil)
+
+    # 1年間の所定労働日数
     year_prescribed_working_days = labor_regulations.fetch(:year_prescribed_working_days, nil)
     raise '1年間の所定労働日数が設定されていません' unless year_prescribed_working_days
 
+    # 1日の所定労働時間
     daily_prescribed_working_hours = labor_regulations.fetch(:daily_prescribed_working_hours, nil)
-    raise '1年間の所定労働時間が設定されていません' unless daily_prescribed_working_hours&.fetch(:hour, nil)
+    raise '1日の所定労働時間が設定されていません' unless daily_prescribed_working_hours&.fetch(:hour, nil)
 
-    monthly_prescribed_working_days = calculate_monthly_prescribed_working_days(year_prescribed_working_days,
-                                                                                daily_prescribed_working_hours)
-    allowances = params.fetch(:allowances, nil)
+    # 1ヶ月あたりの所定労働時間
+    monthly_prescribed_working_hours = calculate_monthly_prescribed_working_hours(year_prescribed_working_days,
+                                                                                  daily_prescribed_working_hours)
+
+    # 割増賃金の算定基礎額
     basis_for_extra_pay = calculate_basis_for_extra_pay(params)
 
-    hourly_pay_amount = calculate_hourly_pay_amount(monthly_prescribed_working_days, basis_for_extra_pay)
+    # 1時間あたりの賃金額
+    hourly_pay_amount = calculate_hourly_pay_amount(monthly_prescribed_working_hours, basis_for_extra_pay)
 
+    # パラメータから勤怠状況を取得する
     attendances = params.fetch(:attendances, nil)
+
+    # 時間外労働手当
     overtime_allowance = calculate_overtime_allowance(hourly_pay_amount, attendances)
+
+    # 深夜労働手当
     late_night_allowance = calculate_late_night_allowance(hourly_pay_amount, attendances)
+
+    # 法定休日労働手当
     legal_holiday_allowance = calculate_legal_holiday_allowance(hourly_pay_amount, attendances)
 
     overtime_allowance + late_night_allowance + legal_holiday_allowance
@@ -84,7 +98,7 @@ class PayDeductionService
     allowance.fetch(:is_uniform, nil)
   end
 
-  def calculate_monthly_prescribed_working_days(year_prescribed_working_days, daily_prescribed_working_hours)
+  def calculate_monthly_prescribed_working_hours(year_prescribed_working_days, daily_prescribed_working_hours)
     hour = daily_prescribed_working_hours.fetch(:hour).fetch(:value).to_i
     minute = daily_prescribed_working_hours.fetch(:minute, nil)&.fetch(:value).to_i
 
@@ -93,10 +107,9 @@ class PayDeductionService
     (year_prescribed_working_days.fetch(:value).to_i * daily_prescribed_working_minutes / (12 * 60).to_f).round
   end
 
-  def calculate_hourly_pay_amount(monthly_prescribed_working_days, basis_for_extra_pay)
+  def calculate_hourly_pay_amount(monthly_prescribed_working_hours, basis_for_extra_pay)
     # 時間単価は 50 銭未満切り捨て、50 銭以上 1 円未満切り上げ
-
-    (basis_for_extra_pay / monthly_prescribed_working_days.to_f).round
+    (basis_for_extra_pay / monthly_prescribed_working_hours.to_f).round
   end
 
   def calculate_overtime_allowance(hourly_pay_amount, attendances)

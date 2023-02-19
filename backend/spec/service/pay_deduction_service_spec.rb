@@ -309,7 +309,7 @@ RSpec.describe PayDeductionService do
       it 'エラーになること' do
         expect do
           described_class.new.calculate_extra_pay_amount(params)
-        end.to raise_error(RuntimeError, '1年間の所定労働時間が設定されていません')
+        end.to raise_error(RuntimeError, '1日の所定労働時間が設定されていません')
       end
     end
   end
