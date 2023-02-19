@@ -3,6 +3,9 @@ import { Field } from 'react-final-form'
 import {
   required,
   mustBeNumber,
+  mustBeHour,
+  mustBeMinute,
+  mustBeDay,
   composeValidators,
 } from '../../utils/formValidators'
 
@@ -38,7 +41,7 @@ const LaborRegulationForm: FC = () => {
             </label>
             <Field
               name="laborRegulations.dailyPrescribedWorkingHours.hour.value"
-              validate={composeValidators(required, mustBeNumber)}
+              validate={composeValidators(required, mustBeHour, mustBeNumber)}
             >
               {({ input, meta }) => (
                 <>
@@ -55,7 +58,7 @@ const LaborRegulationForm: FC = () => {
             <label className="timeLabel">時間</label>
             <Field
               name="laborRegulations.dailyPrescribedWorkingHours.minute.value"
-              validate={composeValidators(mustBeNumber)}
+              validate={composeValidators(mustBeNumber, mustBeMinute)}
             >
               {({ input, meta }) => (
                 <>
@@ -75,7 +78,7 @@ const LaborRegulationForm: FC = () => {
         <div>
           <Field
             name="laborRegulations.closingDate.value"
-            validate={composeValidators(required, mustBeNumber)}
+            validate={composeValidators(mustBeNumber, mustBeDay)}
           >
             {({ input, meta }) => (
               <div className="inputColumns">
@@ -94,7 +97,7 @@ const LaborRegulationForm: FC = () => {
         <div className="inputColumns">
           <Field
             name="laborRegulations.payDate.value"
-            validate={composeValidators(required, mustBeNumber)}
+            validate={composeValidators(mustBeNumber, mustBeDay)}
           >
             {({ input, meta }) => (
               <div className="inputColumns">

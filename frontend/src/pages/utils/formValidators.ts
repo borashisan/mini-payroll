@@ -9,6 +9,24 @@ export const mustBeNumber = (value: inputValue): ErrorMessage => {
     : undefined
 }
 
+export const mustBeHour = (value: inputValue): ErrorMessage => {
+  return Number(value) < 0 || Number(value) > 23
+    ? '0~23を入力してください'
+    : undefined
+}
+
+export const mustBeMinute = (value: inputValue): ErrorMessage => {
+  return Number(value) < 0 || Number(value) > 59
+    ? '0~59を入力してください'
+    : undefined
+}
+
+export const mustBeDay = (value: inputValue): ErrorMessage => {
+  return Number(value) < 0 || Number(value) > 31
+    ? '0~31を入力してください'
+    : undefined
+}
+
 export const composeValidators =
   (...validators: Array<(value: inputValue) => ErrorMessage>) =>
   (value: inputValue) =>
