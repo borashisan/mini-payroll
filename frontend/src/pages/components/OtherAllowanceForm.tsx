@@ -54,7 +54,7 @@ const OtherAllowanceForm: FC<AllowanceProps> = (props) => {
                   )}
                 </Field>
                 <Field
-                  name={`allowances.${name}.value`}
+                  name={`${name}.value`}
                   validate={composeValidators(mustBeNumber)}
                 >
                   {({ input, meta }) => (
@@ -74,7 +74,7 @@ const OtherAllowanceForm: FC<AllowanceProps> = (props) => {
                   <label className="allowanceInputLabel">支給単位</label>
                   <Field
                     className="inputSelectBox"
-                    name={`allowances.${name}.payUnit`}
+                    name={`${name}.payUnit`}
                     component="select"
                     type="select"
                   >
